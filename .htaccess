@@ -1,0 +1,13 @@
+ErrorDocument 403 /404.html
+
+# Routing using htaccess file
+RewriteEngine on
+RewriteBase /
+
+# redirect all root requests to the frontendviews index page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^$ /frontendviews/index.php [L]
+
+# rewrite all /register requests to frontendviews register page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*?register(\.php)?(.*?)$ /frontendviews/home.php$2 [L]
