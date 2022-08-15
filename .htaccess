@@ -4,6 +4,12 @@ ErrorDocument 403 /404.html
 RewriteEngine on
 RewriteBase /
 
+
+# Initialize database page routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^init$ /db/initializedatabase.php [L]
+
+
 # redirect all root requests to the frontendviews index page
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^$ /frontendviews/index.php [L]

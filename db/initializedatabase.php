@@ -25,11 +25,24 @@ if ($conn->connect_error) {
  * Creating The ecommerce database
  */
 $create_ecommerce_db = "CREATE DATABASE IF NOT EXISTS `ecommerce` CHARACTER SET utf8 COLLATE utf8_unicode_ci";
-if ($conn->query($create_accounts_db) !== true) {
+if ($conn->query($create_ecommerce_db) !== true) {
     echo "<br>Error creating Database-(ecommerce): " . $conn->error . "<br>";
 } else {
     echo "New Database-(ecommerce) created<br>";
 }
+
+
+
+/**
+ * Select the ecommerce database
+ */
+if ($conn->query("USE " . CONFIGS::DB_NAME) !== true) {
+    echo "<br>Error: " . $conn->error . "<br>";
+    exit;
+} else {
+    echo "Selected the ".CONFIGS::DB_NAME." database<br>";
+}
+
 
 
 /**
