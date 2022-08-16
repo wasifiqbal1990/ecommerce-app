@@ -17,6 +17,11 @@ RewriteRule ^\/?$ /frontendviews/index.php [L]
 # rewrite all /register requests to frontendviews register page
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^register\/?$ /frontendviews/register.php [L]
+
+# rewrite all /login requests to frontendviews login page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*?login\/?$ /frontendviews/login.php [L]
+
 # register page countroller routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^register\/c\/?$ /controllers/register.php [L]
@@ -24,3 +29,5 @@ RewriteRule ^register\/c\/?$ /controllers/register.php [L]
 # Terms of Service page routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*?tos\/?$ /frontendviews/terms_of_service.php [L]
+
+
