@@ -1,7 +1,7 @@
 <?php
 
 # File created using Visual Studio Code: https://code.visualstudio.com/
-# Created by Naisend
+# Created by Naisend. Telegram contact: https://t.me/elipheleh
 
 
 
@@ -51,22 +51,13 @@ if ($conn->query("USE " . CONFIGS::DB_NAME) !== true) {
 $create_users_table = "CREATE TABLE IF NOT EXISTS users (
     `userid` BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(50) not null,
-    `first_name` VARCHAR(50) not null,
-    `last_name` VARCHAR(50) not null,
-    `email` VARCHAR(100) not null,
     `password` VARCHAR(100) not null,
-    `hash` VARCHAR(40) not null,
     `country` VARCHAR(32) not null DEFAULT '',
-    `registration_verified` BOOL not null DEFAULT 0,
     `registration_date` datetime not null DEFAULT CURRENT_TIMESTAMP,
     `account_level` INT(2) not null DEFAULT 0,
-    `user_themes` JSON not null,
-    `pagination` INT(2) not null DeFAULT 30,
-    `dashboard` JSON,
+    `pagination` INT(2) not null DEFAULT 30,
     UNIQUE KEY `username` (`username`),
-    UNIQUE KEY `email` (`email`),
     KEY `password` (`password`),
-    KEY `registration_verified` (`registration_verified`),
     KEY `account_level` (`account_level`)
 ) CHARACTER SET utf8 ENGINE=InnoDB";
 

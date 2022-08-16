@@ -18,7 +18,7 @@
 if (!defined("DOCUMENT_ROOT")) {
     define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT']);
 }
-require_once DOCUMENT_ROOT . '/configs_sensitive.php';
+require_once DOCUMENT_ROOT.'/configs_sensitive.php';
 
 
 class CONFIGS
@@ -26,8 +26,10 @@ class CONFIGS
     public const MAINTENANCE = false;
     public const APP_VERSION = 1.0;
     public const SITE_TITLE = 'ECOMMERCE';
+    public const DOMAIN = 'ecommerce.pagerepair.co';
     public const INDEX_SCRIPT = 'index.php';
-    public const COMPANY_LOGO_ALTTEXT = 'Company Logo Missing';
+    public const COMPANY_NAME = 'XYZ E-COMMERCE COMPANY';
+    public const COMPANY_LOGO_ALTTEXT = 'Company Logo Here';
     public const COMPANY_LOGO = '<img src = "/favicon.svg" alt="'.self::COMPANY_LOGO_ALTTEXT.'" class="companylogo"/>';
 
     public const TIMEZONE = '+00:00';
@@ -37,4 +39,15 @@ class CONFIGS
     public const DB_USERNAME = PRODUCTION_DB_USERNAME;
     public const DB_PASSWORD = PRODUCTION_DB_PASSWORD;
     public const DB_NAME = 'ecommerce';
+
+    public const DEFAULT_LOGIN_TIMEOUT = 2700; //* after 45 minutes the user gets logged out
+
+    public const CAPTCHA_SECRET_ = 'uz5FbgjZo38fkCk&';
+    public const CAPTCHA_SALT_ = 'WJu@gd3A*@q^E3v&iF$!on6A3EEu5f#mk';
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                        Set Default datetime for php                        */
+/* -------------------------------------------------------------------------- */
+date_default_timezone_set('UTC');

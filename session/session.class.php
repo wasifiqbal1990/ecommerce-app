@@ -1,14 +1,14 @@
 <?php
 
 # File created using Visual Studio Code: https://code.visualstudio.com/
-# Created by Naisend
+# Created by Naisend. Telegram contact: https://t.me/elipheleh
 
 
 if (!defined("DOCUMENT_ROOT")) {
     define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT']);
 }
 /** Include the database connection file. This file makes the connection to database and is needed here */
-require_once DOCUMENT_ROOT . '/db/dbconnection.php';
+require_once DOCUMENT_ROOT.'/db/dbconnection.php';
 
 
 /** Define database configuration */
@@ -192,7 +192,7 @@ class Session
         $access = time();
         $accesstime = date("Y-m-d H:i:s", $access);
         // Regex parse ownerid from userid
-        $ownerid = preg_match('/userid\|i:(\d+)\;/', $Session_Data, $matches) ? $matches[1] : '';
+        $ownerid = preg_match('/userid\|i:(\d+)\;/', $Session_Data, $matches) ? $matches[1] : null;
         try {
             // Set query
             $this->db->query('REPLACE INTO sessions (`id`,`ownerid`,`access`,`accesstime`,`Session_Data`) VALUES (:id, :ownerid, :access, :accesstime, :Session_Data)');

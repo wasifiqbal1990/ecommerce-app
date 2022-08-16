@@ -1,6 +1,6 @@
 <?php
 /**
- * This Template file should contain Basic Menu
+ * This Template file should contain Header with extra menus: Logout, Notifications, Discount Deals, Users avartar and Settings
  */
 
 

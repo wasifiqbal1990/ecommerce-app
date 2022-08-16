@@ -12,8 +12,15 @@ RewriteRule ^init$ /db/initializedatabase.php [L]
 
 # redirect all root requests to the frontendviews index page
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^$ /frontendviews/index.php [L]
+RewriteRule ^\/?$ /frontendviews/index.php [L]
 
 # rewrite all /register requests to frontendviews register page
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^.*?register(\.php)?(.*?)$ /frontendviews/home.php$2 [L]
+RewriteRule ^register\/?$ /frontendviews/register.php [L]
+# register page countroller routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^register\/c\/?$ /controllers/register.php [L]
+
+# Terms of Service page routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*?tos\/?$ /frontendviews/terms_of_service.php [L]
