@@ -13,40 +13,47 @@ require_once DOCUMENT_ROOT.'/configs.php';
 require_once DOCUMENT_ROOT.'/session/session.class.php';
 require_once DOCUMENT_ROOT.'/libs/captcha/SimpleCaptcha.php';
 
-$captcha = (new SimpleCaptcha())
-    ->option('secret_key', CONFIGS::CAPTCHA_SALT_)
-    ->option('secret_salt', CONFIGS::CAPTCHA_SECRET_)
-    ->option('difficulty', 1) // 0 (easy) to 3 (difficult)
-    ->option('distortion_type', 1) // 1: position distortion, 2: scale distortion
-    ->option('num_terms', 2)
-    ->option('max_num_terms', 4) // -1 means constant num_terms
-    ->option('min_term', 1)
-    ->option('max_term', 21)
-    ->option('has_multiplication', true)
-    ->option('has_division', true)
-    ->option('has_equal_sign', true)
-    ->option('color', 0x121212)
-    ->option('background', 0xffffff);
+$db = new Database();
+$errors = [];
+if(isset($_POST['login']))
+{
+    if(!isset($_POST['username']) && empty($_POST['username']))
+    {
+        $errors[] = "Username is required";
+    }
 
-// $captcha->reset();
+    if(!isset($_POST['pwd']) && empty($_POST['pwd']))
+    {
+        $errors[] = "Password is required";
+    }
+
+    if(empty($errors))
+    {
+        $username = $_POST['username'];
+        $password = $_POST['pwd'];
+
+        $db->query("Select * from users where username=:username and password=:password");
+        $db->bind("username",$username);
+        $db->bind("password",$password);
+        $result = $db->execute();
+        if($result)
+        {
+            $user = $db->single();
+            $success = 'Logged in successfully';
+            session_start();
+            $_SESSION['logged_in'] = 1;
+            header("Location: /portal");exit;
+            // Set the session and redirec the user to portal
+//            $session = new Session();
+//            $session->write($user['userid'], $user);
+//            echo 'done';exit;
+        }
+
+        $errors[] = "Username or password is incorrect";
+    }
 
 
-$session = new Session();
-
-
-$captchaImage = $captcha->getCaptcha();
-$_SESSION['captchaHash'] = $captcha->getHash();
-
-
-
-if (!isset($_SESSION['HTTP_REFERER']) || $_SESSION['HTTP_REFERER'] !== 'ecommerceloginpage') {
-    unset($_SESSION['registrationerrors']);
-    unset($_SESSION['registrationsuccess']);
 }
-if (isset($_SESSION['HTTP_REFERER'])) {
-    unset($_SESSION['HTTP_REFERER']);
-}
-
 
 
 
@@ -82,37 +89,37 @@ if (isset($_SESSION['HTTP_REFERER'])) {
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form action="register/c" method="post">
+            <form action="" method="post">
                 <div class="container">
                     <h1>Login</h1>
 
                     <hr>
 
                     <?php
-                    if (isset($_SESSION['loginerrors']) && count($_SESSION['loginerrors']) > 0) {
+                    if (!empty($errors)) {
                         echo '<div id="error_explanation" class="text-danger">';
                         echo '<div class="error_message alert alert-danger d-none"><strong>Some Errors occurred!</strong></div>';
                         echo '<ul>';
-                        foreach ($_SESSION['loginerrors'] as $error) {
+                        foreach ($errors as $error) {
                             echo '<li>'.$error.'</li>';
                         }
                         echo '</ul>';
                         echo '</div>';
                     }
-                    if (isset($_SESSION['loginsuccess']) && strlen($_SESSION['loginsuccess']) > 0) {
-                        echo '<div class="error_message alert alert-success"><strong>'.$_SESSION['loginsuccess'].'</strong></div>';
+                    if (isset($success)) {
+                        echo '<div class="error_message alert alert-success"><strong>'.$success.'</strong></div>';
                     }
 
                     ?>
 
                     <label for="email"><b>User</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" id="username" required="" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" />
+                    <input type="text" placeholder="Enter Username" name="username" id="username"  value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" />
 
                     <label for="pwd"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required="" />
+                    <input type="password" placeholder="Enter Password" name="pwd" id="pwd"  />
 
 
-                    <input type="submit" class="registerbtn" value="Login">
+                    <input type="submit" name="login" class="registerbtn" value="Login">
                 </div>
 
                 <div class="container signin">

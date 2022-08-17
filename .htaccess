@@ -22,6 +22,10 @@ RewriteRule ^register\/?$ /frontendviews/register.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*?login\/?$ /frontendviews/login.php [L]
 
+# rewrite all /portal requests to frontendviews login page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*?portal\/?$ /frontendviews/portal.php [L]
+
 # register page countroller routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^register\/c\/?$ /controllers/register.php [L]

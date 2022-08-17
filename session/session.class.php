@@ -44,7 +44,7 @@ class Database
         }
     }
 
-    public function query($query)
+    public function query($query, $params = [])
     {
         $this->stmt = $this->dbh->prepare($query);
     }
