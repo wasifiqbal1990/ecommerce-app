@@ -107,12 +107,11 @@ if (count($validationerrors) > 0) {
 
 try {
     $query_insert_new_user = $conn->prepare(DBQUERY::INSERT_NEW_USER);
-    $country = getVisitorCountry();
     /**
      * Hash the password for security reason
      */
     $passwordHashed = password_hash($registerpassword, PASSWORD_BCRYPT);
-    $query_insert_new_user->bind_param('sss', $username_trimmed, $passwordHashed, $country);
+    $query_insert_new_user->bind_param('ss', $username_trimmed, $passwordHashed);
     $query_insert_new_user->execute();
     $_SESSION['logged_in'] = false; // So we know the user has not logged in OR afresh sign up
     $_SESSION['username'] = $username_trimmed;

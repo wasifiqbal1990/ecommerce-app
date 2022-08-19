@@ -50,7 +50,7 @@ if ($conn->query("USE " . CONFIGS::DB_NAME) !== true) {
 $create_users_table = "CREATE TABLE IF NOT EXISTS users (
     `userid` BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(50) not null,
-    `password` VARCHAR(100) not null,
+    `password` VARCHAR(100) not null, 
     `registration_date` datetime not null DEFAULT CURRENT_TIMESTAMP,
     `account_level` INT(2) not null DEFAULT 0,
     `pagination` INT(2) not null DEFAULT 30,

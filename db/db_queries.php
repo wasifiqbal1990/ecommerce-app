@@ -34,12 +34,10 @@ class DBQUERY
 
     public const SELECT_FROM_USERS_BY_USERNAME = "SELECT * from `users` where `username` = ?";
     public const SELECT_FROM_USERS_BY_USERID = "SELECT * from `users` where `userid`=?";
-    public const INSERT_NEW_USER = "INSERT INTO `users` (`username`, `password`, `country`) VALUES(?,?,?)";
+    public const INSERT_NEW_USER = "INSERT INTO `users` (`username`, `password`) VALUES(?,?)";
     public const DELETE_USERS_BY_USERNAME = "DELETE from `users` where `username`=?";
 
-    public const UPDATE_COUNTRYNAME = "UPDATE `users` SET `country`=? where `userid`=?";
 
-    
 
     /* --------------------- Queries affecting session table -------------------- */
 
