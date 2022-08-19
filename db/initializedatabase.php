@@ -1,7 +1,6 @@
 <?php
 
 # File created using Visual Studio Code: https://code.visualstudio.com/
-# Created by Naisend. Telegram contact: https://t.me/elipheleh
 
 
 
@@ -52,7 +51,6 @@ $create_users_table = "CREATE TABLE IF NOT EXISTS users (
     `userid` BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(50) not null,
     `password` VARCHAR(100) not null,
-    `country` VARCHAR(32) not null DEFAULT '',
     `registration_date` datetime not null DEFAULT CURRENT_TIMESTAMP,
     `account_level` INT(2) not null DEFAULT 0,
     `pagination` INT(2) not null DEFAULT 30,

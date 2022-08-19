@@ -1,7 +1,6 @@
 <?php
 
 # File created using Visual Studio Code: https://code.visualstudio.com/
-# Created by Naisend. Telegram contact: https://t.me/elipheleh
 
 
 
