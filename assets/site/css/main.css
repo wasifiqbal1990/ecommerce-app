@@ -3,6 +3,11 @@
 /* Add padding to containers */
 .container {
   padding: 16px;
+  width: 100%;
+}
+
+svg.reg_image001 {
+  width: 100%;
 }
 
 /* Full-width input fields */

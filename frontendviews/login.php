@@ -85,7 +85,7 @@ if(isset($_POST['login']))
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
+            <img src="/assets/site/images/register_image01.svg" class="img-fluid" alt="Phone image">
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
             <form action="" method="post">
