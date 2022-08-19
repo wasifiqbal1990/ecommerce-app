@@ -1,4 +1,9 @@
+AuthName "Dev Only Restricted Area"
+AuthType Basic
+AuthUserFile /home/pagerepair/web/ecommerce.pagerepair.co/.htpasswd
+require valid-user
 ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
 
 # Routing using htaccess file
 RewriteEngine on
