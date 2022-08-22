@@ -11,7 +11,6 @@ if (!defined('DOCUMENT_ROOT')) {
 
 require_once DOCUMENT_ROOT . '/session/session.class.php';
 require_once DOCUMENT_ROOT . '/db/dbconnection.php';
-require_once DOCUMENT_ROOT.'/libs/locations.functions.php';
 require_once DOCUMENT_ROOT.'/libs/captcha/SimpleCaptcha.php';
 require_once DOCUMENT_ROOT.'/libs/trim.functions.php';
 

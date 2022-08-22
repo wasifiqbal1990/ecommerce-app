@@ -35,6 +35,10 @@ RewriteRule ^.*?portal\/?$ /frontendviews/portal.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^register\/c\/?$ /controllers/register.php [L]
 
+# login page countroller routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^login\/c\/?$ /controllers/login.php [L]
+
 # Terms of Service page routing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*?tos\/?$ /frontendviews/terms_of_service.php [L]
