@@ -73,6 +73,12 @@ if (!isset($username)) {
         $query_select_from_users_by_username->free_result();
     }
 }
+if (count($validationerrors) > 0) {
+    $_SESSION['loginerrors'] = $validationerrors;
+    header('location: /login');
+    exit;
+}
+
 
 /* --------------------------- Validating Password -------------------------- */
 $password = $_POST['pwd'];
@@ -88,6 +94,11 @@ if (!isset($password)) {
     // Do not tell user the real reason. Might be a bruteforcer
     $validationerrors[] = 'Username or password is incorrect';
 }
+if (count($validationerrors) > 0) {
+    $_SESSION['loginerrors'] = $validationerrors;
+    header('location: /login');
+    exit;
+}
 
 
 /* ----------------------------- CSRF Protection ---------------------------- */
@@ -97,13 +108,6 @@ if (!isset($_POST[$_SESSION['tokenName']]) || $_POST[$_SESSION['tokenName']] !==
     exit;
 }
 
-
-
-if (count($validationerrors) > 0) {
-    $_SESSION['loginerrors'] = $validationerrors;
-    header('location: /index');
-    exit;
-}
 
 
 
